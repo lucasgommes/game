@@ -1,5 +1,4 @@
 import random
-from generateGame import countRepeatedNumbersDic
 
 GCollection = {}
 
@@ -55,6 +54,18 @@ def printDic(dic: dict):
     for key, value in dic.items():
         print(f"número {int(key)}: {value}")
 
+def NoRepeat(dic:dict):
+    numbers = []
+    auxDic = countRepeatedNumbersDic(dic)
+
+    for i in range(1,26):
+        if i in auxDic:
+            pass
+        else:
+            numbers.append(i)
+    return sorted(numbers)
+            
+
 def GameGenerator(qtdGame:int):
     GCollection[0] = generateGame()
     GCollection[1] = generateGame()
@@ -62,3 +73,4 @@ def GameGenerator(qtdGame:int):
     for i in range(len(GCollection), qtdGame):
         GCollection[i] = game()
     printDic(GCollection)
+

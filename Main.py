@@ -1,8 +1,9 @@
-from nenh import GameGenerator, printDic, countRepeatedNumbersDic, GCollection
+from nenh import GameGenerator, printDic, countRepeatedNumbersDic, GCollection, NoRepeat
 def main():
     number = int(input('Quantidade de jogos: '))
     GameGenerator(number)
-    question = input('\nDeseja exibir qtd de repetições? (y/n)')
+    print(f'Números não presentes: {NoRepeat(GCollection)}')
+    question = input('\nDeseja exibir quatidade de repetições? (y/n)')
     if question=='y':
         print('\nRepetições: ')
         printDic(countRepeatedNumbersDic(GCollection))
