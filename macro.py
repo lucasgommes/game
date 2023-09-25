@@ -13,18 +13,36 @@ MapNumber = {1:[137, 535],11:[758,534],21:[631,627],
              10:[693,533],20:[570,626]}
 
 def AutoInsert(game:list):
-    pyautogui.hotkey('winleft','2')
-    time.sleep(2)
-    pyautogui.press('down', presses=13)
-    time.sleep(2)
+    i = 0
+    while i < len(game):
+        pyautogui.hotkey('winleft','2')
+        time.sleep(5)
+        pyautogui.press('down', presses=13)
+        
+        for i in game:
+            time.sleep(0.3)
+            if i in MapNumber:
+                px = MapNumber[i][0]
+                py = MapNumber[i][1]
+                pyautogui.click(x=px,y=py)
 
-    for i in game:
-        if i in MapNumber:
-            px = MapNumber[i][0]
-            py = MapNumber[i][1]
-            time.sleep(0.1)
-            pyautogui.click(x=px,y=py)
-    pyautogui.press('down', presses=16)
-    time.sleep(0.3)
-    pyautogui.click(x=780, y=717)
-    pyautogui.press('home')
+        pyautogui.press('down', presses=16)
+        time.sleep(0.3)
+        pyautogui.click(x=780, y=717)
+        pyautogui.press('home')
+
+exampleDic ={'Jogo 1': [2, 4, 5, 9, 10, 11, 12, 14, 15, 16, 17, 19, 20, 23, 25],
+             'Jogo 2': [2, 4, 8, 9, 12, 13, 14, 15, 16, 17, 19, 20, 22, 23, 24],
+                'Jogo 3': [2, 4, 5, 9, 11, 12, 13, 14, 15, 16, 19, 20, 23, 24, 25],
+                'Jogo 4': [2, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 19, 20, 23, 25],
+                'Jogo 5': [2, 4, 8, 10, 11, 13, 14, 15, 16, 17, 19, 20, 23, 24, 25],
+                'Jogo 6': [2, 5, 8, 10, 11, 12, 13, 14, 15, 17, 20, 22, 23, 24, 25],
+                'Jogo 7': [2, 4, 5, 8, 9, 10, 11, 13, 14, 16, 17, 19, 20, 24, 25],
+                'Jogo 8': [4, 5, 8, 10, 12, 13, 14, 15, 16, 17, 19, 22, 23, 24, 25],
+                'Jogo 9': [2, 4, 5, 8, 9, 10, 11, 13, 15, 19, 20, 22, 23, 24, 25],
+                'Jogo 10': [2, 4, 5, 8, 9, 10, 11, 13, 14, 16, 19, 20, 22, 24, 25]}
+
+def AutoBet(dic:dict):
+    for key, game in dic.items():
+        if key:
+            AutoInsert(game)

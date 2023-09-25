@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 import random
 
 GCollection = {}
@@ -13,16 +14,21 @@ def generateGame():
     game.sort()
     return game
 
-def game():
+def game(not_number:dict=None):
     game_result = []
+
     while len(game_result) < 15:
         collection = countRepeatedNumbersDic(GCollection)
         max_repeat = max(collection.values())
         min_repeat = min(collection.values())
         number = random.randint(1, 25)
 
-        if number not in game_result and (collection.get(number, 0) <= max_repeat+2) and (collection.get(number, 0) >= min_repeat):#and (collection.get(number, 0) >= min_repeat)
-            game_result.append(number)
+        if not_number:
+            if (number not in game_result and number not in not_number) and ((collection.get(number, 0) <= max_repeat+2) and (collection.get(number, 0) >= min_repeat)):
+                game_result.append(number)
+        else:
+            if number not in game_result and (collection.get(number, 0) <= max_repeat+2) and (collection.get(number, 0) >= min_repeat):
+                game_result.append(number)
 
     return sorted(game_result)
 
@@ -50,9 +56,12 @@ def countRepeatedNumbersDic(dic: dict):
     return repeteadNumbers
 
 def printDic(dic: dict):
-    sorted(dic)
-    for key, value in dic.items():
-        print(f"número {int(key)}: {value}")
+    if 0 in dic:
+        for key, value in dic.items():
+            print(f"'Jogo {int(key)+1}': {value},")
+    elif 1 in dic:
+        for key, value in dic.items():
+            print(f"'Jogo {int(key)}': {value},")
 
 def NoRepeat(dic:dict):
     numbers = []
@@ -69,8 +78,20 @@ def NoRepeat(dic:dict):
 def GameGenerator(qtdGame:int):
     GCollection[0] = generateGame()
     GCollection[1] = generateGame()
-    #GCollection[0] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
     for i in range(len(GCollection), qtdGame):
         GCollection[i] = game()
-    printDic(GCollection)
 
+def GameGenerator_not_number(qtdGame:int):
+    GCollection[0] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+    GCollection[1] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+    qtd_numbers = int(input('Informe a quantidade de números que não serão adiconados: '))
+    DicNotNumber = []
+
+    for k in range(qtd_numbers):
+        NInput = int(input(f'{k+1}ª Número: '))
+        DicNotNumber.append(NInput)
+
+    for i in range(1, qtdGame):
+        GCollection[i] = game(DicNotNumber)
+
+    del GCollection[0]
