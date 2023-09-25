@@ -29,7 +29,6 @@ def game(not_number:dict=None):
         else:
             if number not in game_result and (collection.get(number, 0) <= max_repeat+2) and (collection.get(number, 0) >= min_repeat):
                 game_result.append(number)
-
     return sorted(game_result)
 
 def CountRepeated(number : int, dic : dict):
@@ -45,14 +44,12 @@ def CountRepeated(number : int, dic : dict):
 
 def countRepeatedNumbersDic(dic: dict):
     repeteadNumbers = {}
-
     for game in dic.values():
         for number in game:
             if number in repeteadNumbers:
                 repeteadNumbers[number] += 1
             else:
                 repeteadNumbers[number] = 1
-
     return repeteadNumbers
 
 def printDic(dic: dict):
@@ -72,8 +69,7 @@ def NoRepeat(dic:dict):
             pass
         else:
             numbers.append(i)
-    return sorted(numbers)
-            
+    return sorted(numbers)      
 
 def GameGenerator(qtdGame:int):
     GCollection[0] = generateGame()
@@ -90,7 +86,6 @@ def GameGenerator_not_number(qtdGame:int):
     for k in range(qtd_numbers):
         NInput = int(input(f'{k+1}ª Número: '))
         DicNotNumber.append(NInput)
-
     for i in range(1, qtdGame):
         GCollection[i] = game(DicNotNumber)
 

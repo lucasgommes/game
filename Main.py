@@ -8,7 +8,6 @@ def main():
     if question == 'n':
         GameGenerator(number)
     elif question == 's':
-        
         GameGenerator_not_number(number+1)
 
     printDic(GCollection)
