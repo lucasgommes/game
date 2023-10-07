@@ -1,5 +1,5 @@
 from nenh import *
-from macro import AutoBet
+#from macro import AutoBet
 
 def main():
     number = int(input('Quantidade de jogos: '))
@@ -19,12 +19,12 @@ def main():
     else:
         pass
 
-    if GCollection:
-        bet = input('Deseja realizar as apostas?[s/n] ')
-        if bet == 's':
-            AutoBet(GCollection)
-        else:
-            pass
+    #if GCollection:
+    #    bet = input('Deseja realizar as apostas?[s/n] ')
+    #    if bet == 's':
+    #        AutoBet(GCollection)
+    #    else:
+    #        pass
 
 if __name__ == '__main__':
     main()
