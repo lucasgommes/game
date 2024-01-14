@@ -1,6 +1,5 @@
 from Game import *
 from Verify import *
-#from macro import AutoBet
 
 def main():
     number = int(input('Quantidade de jogos: '))
@@ -13,7 +12,7 @@ def main():
 
     printDic(GCollection)
     print(f'Números não sorteados: {NoRepeat(GCollection)}')
-    question = input('\nDeseja exibir quatidade de repetições?[s/n] ')
+    question = input('\nDeseja exibir quatidade de repetições?[s/n]: ')
     if question=='s':
         print('\nRepetições: ')
         printDic(countRepeatedNumbersDic(GCollection))

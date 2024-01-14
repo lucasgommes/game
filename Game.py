@@ -1,5 +1,6 @@
 from contextlib import nullcontext
 import random
+import Main
 
 GCollection = {}
 
@@ -72,8 +73,11 @@ def NoRepeat(dic:dict):
     return sorted(numbers)      
 
 def GameGenerator(qtdGame:int):
-    GCollection[0] = generateGame()
-    GCollection[1] = generateGame()
+    #GCollection[0] = generateGame()
+    #GCollection[1] = generateGame()
+    GCollection[0] = [2,3,5,6,7,9,10,11,14,18,19,20,21,23,25]
+    GCollection[1] = [1,2,4,6,7,8,9,12,15,16,17,20,22,23,25]
+    GCollection[2] = [1,3,4,6,7,8,10,13,14,17,18,20,21,23,24]
 
     for i in range(len(GCollection), qtdGame):
         GCollection[i] = game()
@@ -84,24 +88,33 @@ def GameGenerator_not_number(qtdGame:int):
 
     qtd_numbers = int(input('Informe a quantidade de números que não serão adiconados: '))
     DicNotNumber = []
+    
+    if qtd_numbers == 99:
+        n2input = int(input('Quatidade: '))
+        for _ in range(n2input):
+                nremove = random.randint(1,25)
+                DicNotNumber.append(nremove)
 
-    for k in range(qtd_numbers):
-        NInput = int(input(f'{k+1}ª Número: '))
-        DicNotNumber.append(NInput)
+    elif qtd_numbers != 99:
+        for k in range(qtd_numbers):
+            NInput = int(input(f'{k+1}ª Número: '))
+            DicNotNumber.append(NInput)
+
     for i in range(1, qtdGame):
-        GCollection[i] = set(game(DicNotNumber))
+        GCollection[i] = game(DicNotNumber)
 
     del GCollection[0]
 
-def verify_repeat(jogo):
-    global GCollection
-    
-    if not any(set(jogo).issubset(set(existing)) for existing in GCollection.values()):
-       
-        chave = f"jogo{len(GCollection) + 1}" 
-        GCollection[chave] = set(jogo)
-        print(f"Processando {chave}: {jogo}")
-        return True
+def verify_repeat(jogos):
+    jogos_repetidos = []
+    for jogo1, numeros1 in jogos.items():
+        for jogo2, numeros2 in jogos.items():
+            if jogo1 != jogo2 and set(numeros1) == set(numeros2):
+                jogos_repetidos.append((jogo1, jogo2))
+
+    if jogos_repetidos:
+        print("Jogos repetidos:")
+        for repeticao in jogos_repetidos:
+            print(f"{repeticao[0]} e {repeticao[1]} têm números idênticos.")
     else:
-        print("Jogo já existe no dicionário global.")
-        return False
+        print("Não há jogos repetidos.")
