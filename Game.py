@@ -57,7 +57,7 @@ def printDic(dic: dict):
     if 0 in dic:
         for key, value in dic.items():
             print(f"'Jogo {int(key)+1}': {value},")
-    elif 1 in dic:
+    else:
         for key, value in dic.items():
             print(f"'Jogo {int(key)}': {value},")
 

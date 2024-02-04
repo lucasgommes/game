@@ -39,4 +39,3 @@ def amarela(texto):
 def render(result):
     for jogo, quantidade_sorteados in result.items():
         print(f"{jogo}: {quantidade_sorteados} números.")
-
