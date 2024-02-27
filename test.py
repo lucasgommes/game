@@ -1,7 +1,7 @@
 from Game import *
 from Verify import *
 from section import createSecGame
-game_win = [2, 4, 5, 7, 8, 10, 11, 12, 13, 14, 19, 20, 23, 24, 25]
+game_win = [17, 19, 14, 10, 8, 18, 2, 24, 4, 23, 15, 1, 7, 11, 6]
 def noRepeatInList(l:list):
     auxList =[]
     for i in range(1,26):
