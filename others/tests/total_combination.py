@@ -1,7 +1,7 @@
 from itertools import product
 
 def find_combinations():
-    numbers = [1, 2, 3, 4]
+    numbers = [1, 2, 3, 4, 5]
     combinations = []
 
     for combination in product(numbers, repeat=5):
