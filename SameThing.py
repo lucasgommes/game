@@ -1,3 +1,11 @@
+"""
+
+    Cria sequências que ponderam os números informados dentro de lista_números. É possível ajustar o tamanho da
+    lista que será gerada, na variável 'selecionados', bem como, quantas listas serão geradas em 'num_combinacoes'.
+
+"""
+
+
 import random
 from collections import defaultdict
 

@@ -1,3 +1,11 @@
+"""
+
+    Contém métodos que criam e analisam sequências numéricas, que seguem
+    um padrão de seções de 25 números dividos em 5 listas.
+
+"""
+
+
 import pandas as pd
 import random
 from Game import countRepeatedNumbersDic, printDic

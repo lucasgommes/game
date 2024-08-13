@@ -1,3 +1,20 @@
+"""
+
+    Analisa as 'sections', exibindo quantas/quais seções se repetiram dentro das sequências
+    inseridas do dicionário 'conjuntos'.
+    
+    Ex.:
+        Conjunto: (1, 1, 4, 4, 5) Conjuntos: [1, 13]
+        |
+        |
+        Os números da sequência (1, 1, 4, 4, 5) se repetiram nas posições:
+
+        conjuntos[1] = [5, 4, 1, 1, 4]
+        conjuntos[13] =[1, 1, 5, 4, 4]
+
+"""
+
+
 from collections import Counter
 
 conjuntos = {1: [5, 4, 1, 1, 4], 

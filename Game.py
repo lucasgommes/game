@@ -59,7 +59,7 @@ def printDic(dic: dict):
             print(f"'Jogo {int(key)+1}': {value},")
     else:
         for key, value in dic.items():
-            print(f"'Jogo {int(key)}': {value},")
+            print(f"'Número {int(key)}': {value},")
 
 def NoRepeat(dic:dict):
     numbers = []
