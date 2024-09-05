@@ -1,8 +1,19 @@
 from contextlib import nullcontext
 import random
-import Main
 
 GCollection = {}
+
+
+def countRepeatedNumbersDic(dic: dict):
+    repeteadNumbers = {}
+    for game in dic.values():
+        for number in game:
+            if number in repeteadNumbers:
+                repeteadNumbers[number] += 1
+            else:
+                repeteadNumbers[number] = 1
+    return repeteadNumbers
+
 
 def generateGame():
     game = []
@@ -14,6 +25,7 @@ def generateGame():
             i += 1
     game.sort()
     return game
+
 
 def game(not_number:dict=None):
     game_result = []
@@ -32,6 +44,7 @@ def game(not_number:dict=None):
                 game_result.append(number)
     return sorted(game_result)
 
+
 def CountRepeated(number : int, dic : dict):
     repeat = 0
     RepeatedList = countRepeatedNumbersDic(dic)
@@ -43,15 +56,6 @@ def CountRepeated(number : int, dic : dict):
             repeat = 0
     return repeat
 
-def countRepeatedNumbersDic(dic: dict):
-    repeteadNumbers = {}
-    for game in dic.values():
-        for number in game:
-            if number in repeteadNumbers:
-                repeteadNumbers[number] += 1
-            else:
-                repeteadNumbers[number] = 1
-    return repeteadNumbers
 
 def printDic(dic: dict):
     if 0 in dic:
@@ -60,6 +64,7 @@ def printDic(dic: dict):
     else:
         for key, value in dic.items():
             print(f"'Número {int(key)}': {value},")
+
 
 def NoRepeat(dic:dict):
     numbers = []
@@ -72,12 +77,14 @@ def NoRepeat(dic:dict):
             numbers.append(i)
     return sorted(numbers)      
 
+
 def GameGenerator(qtdGame:int):
     GCollection[0] = generateGame()
     GCollection[1] = generateGame()
 
     for i in range(len(GCollection), qtdGame):
         GCollection[i] = game()
+
 
 def GameGenerator_not_number(qtdGame:int):
     GCollection[0] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
@@ -101,6 +108,7 @@ def GameGenerator_not_number(qtdGame:int):
         GCollection[i] = game(DicNotNumber)
 
     del GCollection[0]
+
 
 def verify_repeat(jogos):
     jogos_repetidos = []

@@ -81,11 +81,7 @@ def generate(dic): #Gera sequência de jogos seguindo cada padrão presente em u
         dicGames[key] = createGame(currentFormat)
     return dicGames
 
-dados = {},
-print(createSecGame(dados))
-
 #printDic(extractFile(3000,3011))
 #for i in range(len(dados)):
 #    print(f"{i+1}: {createSecGame(dados[i+1])}")
-for i in range(10):
-    print(createGame([3, 4, 3, 2, 3]))
+
