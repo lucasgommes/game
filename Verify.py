@@ -16,7 +16,6 @@ def imprimir_jogos_destacando(dic, win):
 
     for jogo, numeros_sorteados in dic.items():
         numeros_formatados = [verde(str(num)) if num in win else str(num) for num in numeros_sorteados]
-
         print(f"{jogo}: {', '.join(numeros_formatados)}")
 
 def imprimir_lista_verde(lista):
