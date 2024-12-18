@@ -9,10 +9,12 @@
 import random
 from collections import defaultdict
 from Result import show_result
+from Game import countRepeatedNumbersDic, printDic
 
 
-game_win = [10,16,35,46,49,60]
-
+game_win = [10,24,29,38,41,46]
+formation = [2,4]
+completed = {}
 
 def gerar_combinacoes(lista_numeros, num_combinacoes):
     combinacoes = []
@@ -20,26 +22,30 @@ def gerar_combinacoes(lista_numeros, num_combinacoes):
 
     
     # Gera as combinações
-    for _ in range(num_combinacoes):
+    while len(combinacoes) < num_combinacoes:
         # Embaralha a lista para cada nova combinação
         random.shuffle(lista_numeros)
         
         # Seleciona os primeiros 6 números após o embaralhamento
-        selecionados = lista_numeros[:6]
+        selecionados = sorted(lista_numeros[:6])
         
         # Adiciona a combinação na lista de combinações
-        combinacoes.append(selecionados)
-        
+        maiores_30 = [n for n in selecionados if n >= 30]
+        menores_30 = [n for n in selecionados if n <= 30]
+        if formation[0] == len(menores_30) and formation[1] == len(maiores_30):
+            combinacoes.append(selecionados)
+            completed[len(combinacoes)] = selecionados
+
         # Atualiza a contagem de números selecionados
-        for num in selecionados:
-            contagem_numeros[num] += 1
+            for num in selecionados:
+                contagem_numeros[num] += 1
     
     return combinacoes, contagem_numeros
 
-
-
-lista_numeros = [2, 5, 7, 13, 14, 15, 21, 23, 24, 35, 36, 38, 41, 44, 50, 51, 54, 55]
-num_combinacoes = 6
+lista_numeros = [1,6,10,33,35,38,
+                 12,17,18,22,24,29,
+                 41,46,49]
+num_combinacoes = 7
 
 
 combinacoes, contagem_numeros = gerar_combinacoes(lista_numeros, num_combinacoes)
@@ -52,11 +58,14 @@ for i, combinacao in enumerate(combinacoes, 1):
 
 # Imprime a quantidade de vezes que cada número foi selecionado
 print("\nContagem de seleções por número:")
-for numero, quantidade in contagem_numeros.items():
+cont = dict(sorted(contagem_numeros.items()))
+for numero, quantidade in cont.items():
     print(f"Número {numero}: {quantidade} vezes")
+
 
 
 quest = input('Comparar resultados? [s/n]')
 if quest=='s':
     dic = {i: value for i, value in enumerate(combinacoes)}
     show_result(dic, game_win)
+    
