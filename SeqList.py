@@ -14,7 +14,6 @@ from Game import countRepeatedNumbersDic, printDic
 
 game_win = [10,24,29,38,41,46]
 formation = [2,4]
-completed = {}
 
 def gerar_combinacoes(lista_numeros, num_combinacoes):
     combinacoes = []
@@ -34,8 +33,7 @@ def gerar_combinacoes(lista_numeros, num_combinacoes):
         menores_30 = [n for n in selecionados if n <= 30]
         if formation[0] == len(menores_30) and formation[1] == len(maiores_30):
             combinacoes.append(selecionados)
-            completed[len(combinacoes)] = selecionados
-
+            
         # Atualiza a contagem de números selecionados
             for num in selecionados:
                 contagem_numeros[num] += 1
